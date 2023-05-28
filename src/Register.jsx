@@ -9,14 +9,15 @@ const contractaddress = contractAddress; // Replace with your contract's address
 function Register() {
   const [producerAddress, setProducerAddress] = useState('');
   const [consumerAddress,setconsumerAddress] = useState('');
-  const [userID, setUserID] = useState(0);
+  const [producerID, setProducerID] = useState(0);
+  const [consumerID, setConsumerID] = useState(0);
 
   const registerProducer = async () => {
     try {
       const accounts = await web3.eth.requestAccounts();
       const contract = new web3.eth.Contract(contractABI, contractaddress);
 
-      await contract.methods.registerProducer(producerAddress, userID).send({ from: accounts[0] });
+      await contract.methods.registerProducer(producerAddress, producerID).send({ from: accounts[0] });
 
       console.log('Producer registered successfully!');
     } catch (error) {
@@ -29,7 +30,7 @@ function Register() {
       const accounts = await web3.eth.requestAccounts();
       const contract = new web3.eth.Contract(contractABI, contractaddress);
 
-      await contract.methods.registerConsumer(consumerAddress, userID).send({ from: accounts[0] });
+      await contract.methods.registerConsumer(consumerAddress, consumerID).send({ from: accounts[0] });
 
       console.log('Producer registered successfully!');
     } catch (error) {
@@ -52,9 +53,9 @@ function Register() {
       <br/>
       <input
         type="number"
-        placeholder="User ID"
-        value={userID}
-        onChange={(e) => setUserID(parseInt(e.target.value))}
+        placeholder="Producer ID"
+        value={producerID}
+        onChange={(e) => setProducerID(parseInt(e.target.value))}
       />
       <br/>
       <button onClick={registerProducer}>Prosumer</button>
@@ -71,9 +72,9 @@ function Register() {
       <br/>
       <input
         type="number"
-        placeholder="User ID"
-        value={userID}
-        onChange={(e) => setUserID(parseInt(e.target.value))}
+        placeholder="Consumer ID"
+        value={consumerID}
+        onChange={(e) => setConsumerID(parseInt(e.target.value))}
       />
       <br/>
       <button onClick={registerConsumer}>Consumer</button>
