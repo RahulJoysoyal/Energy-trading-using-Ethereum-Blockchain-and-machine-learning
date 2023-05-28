@@ -7,17 +7,20 @@ const web3 = new Web3(Web3.givenProvider);
 const contractaddress = contractAddress; // Replace with your contract's address
 
 function Register() {
-  const [producerAddress, setProducerAddress] = useState('');
-  const [consumerAddress,setconsumerAddress] = useState('');
-  const [producerID, setProducerID] = useState(0);
-  const [consumerID, setConsumerID] = useState(0);
+  const [producerAddress, setProducerAddress] = useState(null);
+  const [consumerAddress,setconsumerAddress] = useState(null);
+  const [producerID, setProducerID] = useState(null);
+  const [consumerID, setConsumerID] = useState(null);
+  const [prodEnergyBal, setProdEnergyBal] = useState(null)
+  const [conEnergyBal, setConEnergyBal] = useState(null)
+
 
   const registerProducer = async () => {
     try {
       const accounts = await web3.eth.requestAccounts();
       const contract = new web3.eth.Contract(contractABI, contractaddress);
 
-      await contract.methods.registerProducer(producerAddress, producerID).send({ from: accounts[0] });
+      await contract.methods.registerProducer(producerAddress, producerID, prodEnergyBal).send({ from: accounts[0] });
 
       console.log('Producer registered successfully!');
     } catch (error) {
@@ -30,7 +33,7 @@ function Register() {
       const accounts = await web3.eth.requestAccounts();
       const contract = new web3.eth.Contract(contractABI, contractaddress);
 
-      await contract.methods.registerConsumer(consumerAddress, consumerID).send({ from: accounts[0] });
+      await contract.methods.registerConsumer(consumerAddress, consumerID, conEnergyBal).send({ from: accounts[0] });
 
       console.log('Producer registered successfully!');
     } catch (error) {
@@ -43,6 +46,7 @@ function Register() {
     <Menu/>
     <div className='main_div'>
     <div className='center_div'>
+    <div>
       <h1>Register as</h1>
       <input
         type="text"
@@ -58,10 +62,19 @@ function Register() {
         onChange={(e) => setProducerID(parseInt(e.target.value))}
       />
       <br/>
+      <input
+        type="number"
+        placeholder="Energy Balance"
+        value={conEnergyBal}
+        onChange={(e) => setProdEnergyBal(parseInt(e.target.value))}
+      />
+      <br/>
       <button onClick={registerProducer}>Prosumer</button>
+      </div>
     </div>
 
     <div className='center_div'>
+    <div>
       <h1>Register as</h1>
       <input
         type="text"
@@ -77,7 +90,15 @@ function Register() {
         onChange={(e) => setConsumerID(parseInt(e.target.value))}
       />
       <br/>
+      <input
+        type="number"
+        placeholder="Energy Balance"
+        value={conEnergyBal}
+        onChange={(e) => setConEnergyBal(parseInt(e.target.value))}
+      />
+      <br/>
       <button onClick={registerConsumer}>Consumer</button>
+    </div>
     </div>
     </div>
     </>

@@ -1,24 +1,25 @@
 * {
   box-sizing: border-box;
   padding: 0px;
-  margin: 0;
-  background-color:steelblue;
+  margin-left: 0px;
+  margin-top: 0px;
+  background-color:rgb(62, 151, 157);
   font-family: 'Josefin Sans', sans-serif;
 }
 
 .main_div {
-  width: 100%;
+  width: auto;
   height: 100vh;
   display: flex;
   background: teal;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 8px 8px 8px 8px;
+  /* margin: 8px 8px 8px 8px; */
 }
 
 .center_div {
-  width: 25%;
+  width: 30%;
   height: 20vh;
   background-color:steelblue;
   box-shadow: 5px 5px 25px -5px rgba(0, 0, 0, 0.5);
@@ -41,14 +42,23 @@ input {
   text-align: center;
   height: 30px;
   top: 10px;
-  border: none;
+  border:rgba(248, 248, 248, 0.5) 1.5px solid;
   background: transparent;
   font-size: 20px;
   font-weight: 500;
-  width: 60%;
-  border-bottom: 3px solid slateblue;
+  width: auto;
+  /* border-bottom: 3px solid slateblue; */
   outline: none;
   color: black;
+}
+
+button, input, optgroup, select, textarea {
+  margin-bottom: 5px;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  border-radius: 4px;
+  width: auto;
 }
 
 .options {
@@ -97,6 +107,7 @@ input {
   width: fit-content;
   margin: 8px 8px 8px 8px;
 }
+
 
 .login-button:hover {
   background-color: #0069d9;

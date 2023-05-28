@@ -65,6 +65,7 @@ function App() {
       <Route path='/about' Component={About} exact/>
       <Route path='/trade' Component={Trade} exact/>
       <Route path='/search' Component={Search} exact/>
+      <Route path="/offer" Component={OfferEnergy}/>
       <Route path="/buy" Component={BuyEnergy}/>
       {/*<Route Component={Error}/>*/}
       <Route path="*" element={<Navigate to ="/" />}/>
