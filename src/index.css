@@ -95,6 +95,7 @@ input {
   cursor: pointer;
   transition: background-color 0.3s ease;
   width: fit-content;
+  margin: 8px 8px 8px 8px;
 }
 
 .login-button:hover {

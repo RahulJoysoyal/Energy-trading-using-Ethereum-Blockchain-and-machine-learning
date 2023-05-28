@@ -7,9 +7,9 @@ function Menu() {
     return (
         <>
         <Link className='active_class' style={{margin:'5px'}} to="/">Intro </Link>
-        <Link className='active_class' style={{margin:'5px'}} to="/register">Register </Link>
+        {/*<Link className='active_class' style={{margin:'5px'}} to="/register">Register </Link>*/}
         <Link className='active_class' style={{margin:'5px'}} to="/trade">Buy/Sell </Link>
-        <Link className='active_class' style={{margin:'5px'}} to="/search">Search</Link>
+        {/*<Link className='active_class' style={{margin:'5px'}} to="/search">Search</Link>*/}
         <Link className='active_class' style={{margin:'5px'}} to="/about">About this </Link>
 
         

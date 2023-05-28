@@ -14,6 +14,7 @@ import {contractAbi, contractAddress} from './Constants/constant';
 import Login from './Components/Login';
 import { useState, useEffect } from 'react';
 import Connected from './Components/Connected';
+import OfferEnergy from './OfferEnergy';
 
 function App() {
   const [provider,setProvider] = useState('');
@@ -65,6 +66,8 @@ function App() {
       <Route path='/search' Component={Search} exact/>
       {/*<Route Component={Error}/>*/}
       <Route path="*" element={<Navigate to ="/" />}/>
+      <Route path='/offer' Component={OfferEnergy} exact/>
+
     </Routes>
     </>
   );

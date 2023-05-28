@@ -5,6 +5,7 @@ import Connected from './Components/Connected';
 import Login from './Components/Login';
 import { ethers } from 'ethers';
 import Menu from './Menu';
+import { Link } from 'react-router-dom';
 
 function Home() {
     const [account,setAccount] = useState('');

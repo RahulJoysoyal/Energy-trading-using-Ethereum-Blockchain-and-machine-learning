@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import '../index';
 import Menu from '../Menu';
-import {Register} from '../Register';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Connected(props) {
     const history = useNavigate('');
@@ -13,7 +12,8 @@ function Connected(props) {
         <div className="connected-container">
         <h1 className="connected-header">You are connected to Metamask</h1>
         <p className='connected-account'>Metamask account: {props.account}</p>
-        <p className='text-center' style={{background:'transparent'}}>Register now to trade energy</p>
+        <Link  to="/register"><button className='login-button'>Register Now</button></Link>
+        <Link  to="/trade"><button className='login-button'>Buy or Sell Now</button></Link>
         </div>
         </>
 

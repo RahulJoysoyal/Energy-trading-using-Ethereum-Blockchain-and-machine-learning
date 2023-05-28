@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, Navigate, useLocation } from 'react-router-dom';
 import './index.css';
 import Menu from './Menu';
+import OfferEnergy from './OfferEnergy';
 
 
-function Trade() {
+function Trade(props) {
     const location = useLocation();
     const [sellAction,setSellAction] = useState('');
     
@@ -27,7 +28,7 @@ function Trade() {
         <div class="card-body">
         <h5 class="card-title">Buy Energy</h5>
         <p class="card-text">You can buy energy</p>
-        <a href="#" class="btn btn-primary">Buy Now</a>
+        <a class="btn btn-primary">Buy Now</a>
 
         </div>
         </div>
@@ -38,7 +39,7 @@ function Trade() {
         <div class="card-body">
         <h5 class="card-title">Sell Energy</h5>
         <p class="card-text">You can Sell energy</p>
-        <a onClick={onInput} class="btn btn-primary">Sell Now</a>
+        <Link to="/offer"><button>Offer Energy</button></Link>
         </div>
         </div>
         </div>
