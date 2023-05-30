@@ -10,11 +10,13 @@ module.exports = {
     },
     develop: {
       port: 7545
-    }
+    },
+    gas: 2100000,
+    gasPrice: 8000000000
   },
   compilers: {
     solc: {
-      version: '0.8.12',
+      version: '0.8.13',
       optimizer: {
         enabled: true,
         runs: 200

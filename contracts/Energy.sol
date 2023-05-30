@@ -1,7 +1,7 @@
 //SPDX-License-Identifier:GPL-3.0
-pragma solidity 0.8.13;
+pragma solidity ^0.8.13;
 
-contract owned {
+contract Energy {
 constructor() { owner = msg. sender; }
 address owner;
 modifier onlyOwner {
@@ -26,7 +26,10 @@ _;
 //Register address aconsumer to belong to userID
 //auserID. Addresses can be delisted ("unregistered") by 
 //setting the userID auserID to zero.
-function registerConsumer (address aconsumer, uint32 auserID) onlyOwner external {
+function registerConsumer (address aconsumer, uint32 auserID, uint buserEnergyBal) onlyOwner external {
+/////////\\\\\\\
+userEnergyBal [aconsumer] = buserEnergyBal;///////////\\\\\\\\\\
+/////////\\\\\\\\
 if (auserID != 0) {
 emit consumerRegistered(aconsumer);
 } else {
@@ -65,7 +68,6 @@ function deregisterProducer (address bproducer) onlyOwner external {
 emit producerDeregistered(bproducer);
 delete(producers[bproducer]);////////////
 }
-
 
 
 event BidMade(address indexed producer, uint32 indexed day, uint32 indexed price, uint64 energy); 
@@ -132,6 +134,9 @@ mapping (uint32 => uint) public asksIndex;
 function offer_energy (uint32 aday, uint32 apriceMax, uint32 apriceMin, uint64 amaxenergy, uint64 aminenergy, uint64 atimestamp) onlyRegisteredProducers external {
 //require a minimum offer of 1 kWh
 require (aminenergy >= kWh);
+///////\\\\\
+require (userEnergyBal[msg.sender]>=amaxenergy);///////////\\\\\\\\\\
+///////\\\\\\
 
 uint idx = bidsIndex[msg.sender][aday];
 //idx is either 0 or such that bids[idx] has the right producer and day (or both 0 and...) 
@@ -160,7 +165,7 @@ emit BidMade(bids[idx].producer, bids[idx].day, bids[idx].maxprice, bids[idx].ma
 }
 
 //can see the bids by giving the index number of the bids array
-function showBids (uint idx) onlyRegisteredConsumers public view returns (address producer,uint32 day,uint32 maxprice,uint64 energy,uint64 timestamp){
+function showBids(uint idx) public view returns (address producer,uint32 day,uint32 maxprice,uint64 energy,uint64 timestamp){
     return (bids[idx].producer, bids[idx].day, bids[idx].maxprice, bids[idx].maxenergy, bids[idx].timestamp) ;
 }
 
@@ -168,6 +173,10 @@ function showBids (uint idx) onlyRegisteredConsumers public view returns (addres
 // Anyone call this function, he'll retrieve all data without minimum price value.
 function getBidByProducerAndDay(address aproducer, uint32 aday) external view returns(address producer,uint32 day,uint32 maxprice,uint64 energy,uint64 timestamp) {
     uint idx = bidsIndex[aproducer][aday];
+    return (bids[idx].producer, bids[idx].day, bids[idx].maxprice, bids[idx].maxenergy, bids[idx].timestamp) ;
+}
+
+function getBidById(uint32 idx) external view returns(address producer,uint32 day,uint32 maxprice,uint64 energy,uint64 timestamp){
     return (bids[idx].producer, bids[idx].day, bids[idx].maxprice, bids[idx].maxenergy, bids[idx].timestamp) ;
 }
 
@@ -227,6 +236,13 @@ emit Deal (aproducer, aday, aprice, aenergy, auserID);
 ///////////////
 // address payable payableRecipient = payable(aproducer);
 // payable(payableRecipient).transfer(10);
+
+/////\\\\\
+uint256 beforeBal = userEnergyBal [msg.sender];
+userEnergyBal[aproducer] -= aenergy;///////////\\\\\\\\\\
+userEnergyBal [msg.sender] += aenergy;
+require(userEnergyBal[msg.sender]-beforeBal==aenergy,"Energy is not transfered yet");
+/////\\\\\\\
 sendEthUser(aproducer);
 //////////////////////
 delete(bidsIndex[aproducer][aday]);
