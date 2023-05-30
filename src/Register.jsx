@@ -3,6 +3,7 @@ import Web3 from 'web3';
 import './index.css';
 import {contractABI, contractAddress} from './Constants/constant';
 import Menu from "./Menu";
+import { Link } from 'react-router-dom';
 const web3 = new Web3(Web3.givenProvider);
 const contractaddress = contractAddress; // Replace with your contract's address
 
@@ -60,6 +61,7 @@ function Register() {
       <button onClick={registerProducer}>Prosumer</button>
     </div>
 
+
     <div className='center_div'>
       <h1>Register as</h1>
       <input
@@ -77,9 +79,12 @@ function Register() {
       />
       <br/>
       <button onClick={registerConsumer}>Consumer</button>
-    </div>
-    </div>
-    </>
+      </div>
+      <div className='connected-container4'>
+      <Link  to="/trade"><button className='login-button'>Buy or Sell Now</button></Link>
+      </div>
+      </div>
+      </>
   );
 }
 

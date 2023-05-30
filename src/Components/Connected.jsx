@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../index';
 import Menu from '../Menu';
 import { Link, useNavigate } from 'react-router-dom';
@@ -16,7 +16,6 @@ function Connected(props) {
         <Link  to="/trade"><button className='login-button'>Buy or Sell Now</button></Link>
         </div>
         </>
-
     );
 }
 

@@ -15,6 +15,7 @@ import Login from './Components/Login';
 import { useState, useEffect } from 'react';
 import Connected from './Components/Connected';
 import OfferEnergy from './OfferEnergy';
+import Chart from './Chart';
 
 function App() {
   const [provider,setProvider] = useState('');
@@ -67,6 +68,11 @@ function App() {
       {/*<Route Component={Error}/>*/}
       <Route path="*" element={<Navigate to ="/" />}/>
       <Route path='/offer' Component={OfferEnergy} exact/>
+      <Route path='/chart' Component={Chart} exact/>
+      <Route path='/connected' Component={Connected} exact/>
+
+
+
 
     </Routes>
     </>
