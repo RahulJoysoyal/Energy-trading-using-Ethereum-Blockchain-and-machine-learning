@@ -36,9 +36,9 @@ function Register() {
 
       await contract.methods.registerConsumer(consumerAddress, consumerID, conEnergyBal).send({ from: accounts[0] });
 
-      console.log('Producer registered successfully!');
+      console.log('Consumer registered successfully!');
     } catch (error) {
-      console.error('Failed to register producer:', error);
+      console.error('Failed to register consumer:', error);
     }
   };
 

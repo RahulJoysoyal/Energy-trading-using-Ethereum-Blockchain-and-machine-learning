@@ -3,6 +3,7 @@ import Web3 from 'web3';
 import './index.css';
 import {contractABI, contractAddress} from './Constants/constant';
 import Menu from "./Menu";
+import { Link } from 'react-router-dom';
 const web3 = new Web3(Web3.givenProvider);
 const contractaddress = contractAddress; // Replace with your contract's address
 
@@ -77,6 +78,9 @@ function OfferEnergy() {
       />
       <div className='connected-container3'>
       <button onClick={SellEnergy}>Offer Energy</button>
+      </div>
+      <div className='connected-container4'>
+      <Link  to="/trade"><button className='login-button'>Click here to Buy or Sell Now</button></Link>
       </div>
     </div>
     </div>

@@ -12,16 +12,16 @@ function BuyEnergy() {
   const [bidPrice, setBidPrice] = useState(null);
   const [bidEnergy, setBidEnergy] = useState(null);
   const [idx, setIdx] = useState(null)
-  const [bid, setBid] = useState(null);
+  const [bid, setBid] = useState([]);
 
 
   const showBids= async ()=>{
     try {
       const accounts = await web3.eth.requestAccounts();
       const contract = new web3.eth.Contract(contractABI, contractaddress);
-      setBid(await contract.methods.showBids(idx)).send({ from: accounts[0] });
+      alert(setBid(await contract.methods.showBids(idx)).send({ from: accounts[0] }));
   }catch(error){
-    console.log("Can not load this bid")
+    alert("Can not load this bid")
   }
 }
 
@@ -30,9 +30,9 @@ function BuyEnergy() {
       const accounts = await web3.eth.requestAccounts();
       const contract = new web3.eth.Contract(contractABI, contractaddress);
       await contract.methods.buy_energy(producerAddress, buyDay, bidPrice, bidEnergy).send({ from: accounts[0] });
-      console.log('Energy Bid successfully!');
+      alert('Energy Bid successfully!');
     } catch (error) {
-      console.error('Failed to Bid Energy:', error);
+      alert('Failed to Bid Energy:', error);
     }
   };
 
@@ -53,15 +53,15 @@ function BuyEnergy() {
       <br/>
       {!(bid!==null)?(
         <>
-        <h1>Prosumer Address: {bid.producer}</h1>
-        <h1>Bidding_Day: {bid.day}</h1>
-        <h1>Price per Unit: {bid.maxprice}</h1>
-        <h1>Offered Energy: {bid.maxenergy}</h1>
+        <h6>Prosumer Address: {bid[0]}</h6>
+        <h6>Bidding_Day: {bid[1]}</h6>
+        <h6>Price per Unit: {bid[2]}</h6>
+        <h6>Offered Energy: {bid[3]}</h6>
         </>
       ):null
       }
       <h1>Enter Bids info</h1>
-      <input
+      <input 
         type="text"
         placeholder="Producer Address"
         value={producerAddress}
@@ -72,21 +72,21 @@ function BuyEnergy() {
         type="number"
         placeholder="Buying Day"
         value={buyDay}
-        onChange={(e) => setBuyDay(parseInt(e.target.value))}
+        onChange={(e) => setBuyDay(e.target.value)}
       />
       <br/>
       <input
         type="number"
         placeholder="Bid Price"
         value={bidPrice}
-        onChange={(e) => setBidPrice(parseInt(e.target.value))}
+        onChange={(e) => setBidPrice(e.target.value)}
       />
       <br/>
       <input
         type="number"
         placeholder="Amount of Energy"
         value={bidEnergy}
-        onChange={(e) => setBidEnergy(parseInt(e.target.value))}
+        onChange={(e) => setBidEnergy(e.target.value)}
       />
       <br/>
       <button onClick={buyEnergy}>Buy Energy</button>
@@ -97,4 +97,3 @@ function BuyEnergy() {
 }
 
 export default BuyEnergy;
-
