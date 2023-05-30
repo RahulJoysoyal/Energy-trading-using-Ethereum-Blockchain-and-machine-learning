@@ -1,13 +1,14 @@
 //SPDX-License-Identifier:GPL-3.0
-pragma solidity >=0.8.12;
+pragma solidity 0.8.13;
 
-contract Energy {
+contract owned {
 constructor() { owner = msg. sender; }
 address owner;
 modifier onlyOwner {
 	require(msg.sender == owner);
 	_;
-	}
+}
+
 
 event consumerRegistered(address indexed consumer);
 event consumerDeregistered (address indexed consumer);
@@ -19,6 +20,7 @@ modifier onlyRegisteredConsumers {
 require (consumers[msg. sender] > 0);
 _;
 }
+
 //I Allowed the owner of the address aconsumer.address()
 //to make transactions on behalf of user id "auserID*
 //Register address aconsumer to belong to userID
@@ -39,16 +41,21 @@ event producerRegistered(address indexed producer);//44
 event producerDeregistered (address indexed producer);
 //map address to producerID "is a registered producer" 
 mapping(address => uint) public producers;////////////
+mapping(address => uint) internal userEnergyBal;/////////////
+
 modifier onlyRegisteredProducers {
 require (producers[msg. sender]>0);
 _;
 }
 //// @notice Allow the owner of address aproducer.(address) to
 //act as a producer (by offering energy).
-function registerProducer(address bproducer,uint buserID) onlyOwner external {
+function registerProducer(address bproducer,uint buserID, uint buserEnergyBal) onlyOwner external {
 emit producerRegistered(bproducer);
 require(buserID>0);//////////////
 producers [bproducer] = buserID;///////////
+/////////\\\\\\\
+userEnergyBal [bproducer] = buserEnergyBal;///////////\\\\\\\\\\
+/////////\\\\\\\\
 ////@note ID can not be zero
 }
 
@@ -153,7 +160,7 @@ emit BidMade(bids[idx].producer, bids[idx].day, bids[idx].maxprice, bids[idx].ma
 }
 
 //can see the bids by giving the index number of the bids array
-function showBids(uint idx) public view returns (address producer,uint32 day,uint32 maxprice,uint64 energy,uint64 timestamp){
+function showBids (uint idx) onlyRegisteredConsumers public view returns (address producer,uint32 day,uint32 maxprice,uint64 energy,uint64 timestamp){
     return (bids[idx].producer, bids[idx].day, bids[idx].maxprice, bids[idx].maxenergy, bids[idx].timestamp) ;
 }
 

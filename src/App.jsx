@@ -16,6 +16,7 @@ import { useState, useEffect } from 'react';
 import Connected from './Components/Connected';
 import OfferEnergy from './OfferEnergy';
 import Chart from './Chart';
+import BuyEnergy from "./BuyEnergy"
 
 function App() {
   const [provider,setProvider] = useState('');
@@ -60,11 +61,13 @@ function App() {
   return (
     <>
     <Routes>
-      <Route path='/' Component={Home} exact/>
+    <Route path='/' Component={Home} exact/>
       <Route path='/register' Component={Register} exact/>
       <Route path='/about' Component={About} exact/>
       <Route path='/trade' Component={Trade} exact/>
       <Route path='/search' Component={Search} exact/>
+      <Route path="/offer" Component={OfferEnergy}/>
+      <Route path="/buy" Component={BuyEnergy}/>
       {/*<Route Component={Error}/>*/}
       <Route path="*" element={<Navigate to ="/" />}/>
       <Route path='/offer' Component={OfferEnergy} exact/>

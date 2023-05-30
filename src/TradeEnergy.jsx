@@ -28,7 +28,7 @@ function Trade(props) {
         <div class="card-body">
         <h5 class="card-title">Buy Energy</h5>
         <p class="card-text">You can buy energy</p>
-        <a class="btn btn-primary">Buy Now</a>
+        <Link to="/buy"><button>Byu Energy</button></Link>
 
         </div>
         </div>
