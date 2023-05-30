@@ -51,7 +51,6 @@ function Trade(props) {
         <button>Submit your choice</button>
         </div>*/}
         </div>
-        <div>You are now in {location.pathname}</div>
         </>
     );
 
