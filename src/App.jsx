@@ -6,17 +6,14 @@ import Home from './Home';
 import Menu from './Menu';
 import Trade from './TradeEnergy';
 import Search from './Search';
-//import Error from './Error';
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import './index.css';
 import {ethers} from 'ethers'; 
-import {contractAbi, contractAddress} from './Constants/constant';
-import Login from './Components/Login';
 import { useState, useEffect } from 'react';
 import Connected from './Components/Connected';
 import OfferEnergy from './OfferEnergy';
 import Chart from './Chart';
-import BuyEnergy from "./BuyEnergy"
+import BuyEnergy from "./BuyEnergy";
 
 function App() {
   const [provider,setProvider] = useState('');

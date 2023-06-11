@@ -2,7 +2,7 @@
 pragma solidity ^0.8.13;
 
 contract Energy {
-constructor() { owner = msg. sender; }
+constructor() public { owner = msg. sender; }
 address owner;
 modifier onlyOwner {
 	require(msg.sender == owner);

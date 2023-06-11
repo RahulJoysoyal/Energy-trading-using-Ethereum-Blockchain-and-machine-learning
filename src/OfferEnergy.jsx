@@ -5,7 +5,7 @@ import {contractABI, contractAddress} from './Constants/constant';
 import Menu from "./Menu";
 import { Link } from 'react-router-dom';
 const web3 = new Web3(Web3.givenProvider);
-const contractaddress = contractAddress; // Replace with your contract's address
+const contractaddress = contractAddress; 
 
 function OfferEnergy() {
   const [aday,setAday] = useState('');

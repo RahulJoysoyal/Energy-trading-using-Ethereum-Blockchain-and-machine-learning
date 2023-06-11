@@ -11,8 +11,8 @@ module.exports = {
     develop: {
       port: 7545
     },
-    gas: 2100000,
-    gasPrice: 8000000000
+    gas: 5000000,
+    gasPrice: 8000000000,
   },
   compilers: {
     solc: {
