@@ -2,7 +2,7 @@
 pragma solidity ^0.8.13;
 
 contract Energy {
-constructor() public { owner = msg. sender; }
+constructor() { owner = msg. sender; }
 address owner;
 modifier onlyOwner {
 	require(msg.sender == owner);
@@ -206,11 +206,13 @@ return bids.length;
 ////aenergy Energy to be offered in mwh
 
 //called by the id that is got from the consumers map and called by the consumer itself
-function buy_energy (address aproducer, uint32 aday, uint32 aprice, uint64 aenergy) onlyRegisteredConsumers external payable {
+
+
+function buy_energy (address payable aproducer, uint32 aday, uint32 aprice, uint64 aenergy) onlyRegisteredConsumers external payable {
 buy_energy_core(aproducer, aday, aprice, aenergy, consumers[msg. sender], 0);
 }
 
-function buy_energy_core(address aproducer, uint32 aday, uint32 aprice, uint64 aenergy, uint32 auserID, uint64 atimestamp) internal {
+function buy_energy_core(address payable aproducer, uint32 aday, uint32 aprice, uint64 aenergy, uint32 auserID, uint64 atimestamp) internal {
 //find offer by producer (aproducer) for day (aday), or zero
 uint idx = bidsIndex[aproducer][aday];
 
@@ -243,7 +245,9 @@ userEnergyBal[aproducer] -= aenergy;///////////\\\\\\\\\\
 userEnergyBal [msg.sender] += aenergy;
 require(userEnergyBal[msg.sender]-beforeBal==aenergy,"Energy is not transfered yet");
 /////\\\\\\\
-sendEthUser(aproducer);
+
+sendEther(aproducer);
+
 //////////////////////
 delete(bidsIndex[aproducer][aday]);
 } else {
@@ -252,8 +256,19 @@ revert();
 }
 }
 
-function sendEthUser(address _user) private {
-       payable(_user).transfer(2000000000000000000);
+//receive() external payable {}
+
+mapping(address => uint) public balances;
+
+event Transfer(address indexed from, address indexed to, uint amount);
+
+function sendEther(address payable _to) public payable {
+        _to.transfer(msg.value);
+
+        balances[msg.sender] -= msg.value;
+        balances[_to] += msg.value;
+
+        emit Transfer(msg.sender, _to, msg.value);
     }
 
 function getAsksCount () external view returns (uint count) {

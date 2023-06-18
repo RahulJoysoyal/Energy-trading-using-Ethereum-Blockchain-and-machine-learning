@@ -1,4 +1,4 @@
-const contractAddress = "0x262Ff954f0e8941a0FA4CfFb11fAe5885A035045";
+const contractAddress = "0xEa706D18F6d4160bb04D8a5e60B8cB462F4111E1";
 
 const contractABI = [
   {
@@ -148,6 +148,31 @@ const contractABI = [
       {
         "indexed": true,
         "internalType": "address",
+        "name": "from",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "Transfer",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
         "name": "consumer",
         "type": "address"
       }
@@ -248,6 +273,26 @@ const contractABI = [
       }
     ],
     "name": "asksIndex",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "balances",
     "outputs": [
       {
         "internalType": "uint256",
@@ -558,7 +603,7 @@ const contractABI = [
   {
     "inputs": [
       {
-        "internalType": "address",
+        "internalType": "address payable",
         "name": "aproducer",
         "type": "address"
       },
@@ -579,6 +624,20 @@ const contractABI = [
       }
     ],
     "name": "buy_energy",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function",
+    "payable": true
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address payable",
+        "name": "_to",
+        "type": "address"
+      }
+    ],
+    "name": "sendEther",
     "outputs": [],
     "stateMutability": "payable",
     "type": "function",

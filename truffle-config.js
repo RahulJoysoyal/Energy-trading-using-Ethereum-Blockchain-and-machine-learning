@@ -6,13 +6,13 @@ module.exports = {
     development: {
       host: "127.0.0.1",
       port: 7545,
+      gas: 6721975,
+      gasPrice: 20000000000,
       network_id: "*" // Match any network id
     },
     develop: {
       port: 7545
     },
-    gas: 5000000,
-    gasPrice: 8000000000,
   },
   compilers: {
     solc: {

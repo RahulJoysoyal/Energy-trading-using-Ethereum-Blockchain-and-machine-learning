@@ -16,7 +16,7 @@ function BuyEnergy() {
     try {
       const accounts = await web3.eth.requestAccounts();
       const contract = new web3.eth.Contract(contractABI, contractaddress);
-      await contract.methods.buy_energy(producerAddress, day, price, energy).send({ from: accounts[0], gas: 5000000 });
+      await contract.methods.buy_energy(producerAddress, day, price, energy).send({ from: accounts[0], gas: 6721975});
 
       console.log('Transaction successful');
     } catch (error) {

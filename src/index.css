@@ -82,6 +82,7 @@ input {
   /* border-bottom: 3px solid slateblue; */
   outline: none;
   color: black;
+  text-decoration-color: black;
 }
 
 button, input, optgroup, select, textarea {
