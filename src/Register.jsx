@@ -12,8 +12,8 @@ function Register() {
   const [consumerAddress,setconsumerAddress] = useState(null);
   const [producerID, setProducerID] = useState(null);
   const [consumerID, setConsumerID] = useState(null);
-  const [prodEnergyBal, setProdEnergyBal] = useState(null)
-  const [conEnergyBal, setConEnergyBal] = useState(null)
+  const [prodEnergyBal, setProdEnergyBal] = useState(null);
+  const [conEnergyBal, setConEnergyBal] = useState(null);
 
 
   const registerProducer = async () => {

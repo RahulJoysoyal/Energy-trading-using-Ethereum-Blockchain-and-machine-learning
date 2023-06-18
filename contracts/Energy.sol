@@ -260,7 +260,7 @@ revert();
 
 mapping(address => uint) public balances;
 
-event Transfer(address indexed from, address indexed to, uint amount);
+event Transfer(address indexed from, address indexed to, uint256 amount);
 
 function sendEther(address payable _to) public payable {
         _to.transfer(msg.value);
