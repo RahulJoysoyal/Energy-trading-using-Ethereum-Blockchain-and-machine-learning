@@ -1,6 +1,7 @@
-import {AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip,Legend,Label} from 'recharts';
-import "./index.css";
 import { Link } from 'react-router-dom';
+import { Area, AreaChart, CartesianGrid, Label, Legend, Tooltip, XAxis, YAxis } from 'recharts';
+import Menu from './Menu';
+import "./index.css";
 
 function Chart() {
     const data = [
@@ -27,6 +28,7 @@ function Chart() {
       ]
     return(
         <>
+        <Menu/>
         <h1>Graphical analysis of energy trading</h1>
         <div className='chart'>
             <AreaChart width={500} height={320} data={data}

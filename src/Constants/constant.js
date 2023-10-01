@@ -1,4 +1,4 @@
-const contractAddress = "0xb79a8D6Fd216CBd3500Ada6952a7e5aAE9b8FcF7";
+const contractAddress = "0x94653336424CEE379de5Ef51EABec2f05681EcFE";
 
 const contractABI = [
   {
@@ -148,31 +148,6 @@ const contractABI = [
       {
         "indexed": true,
         "internalType": "address",
-        "name": "from",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "to",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
-      }
-    ],
-    "name": "Transfer",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
         "name": "consumer",
         "type": "address"
       }
@@ -292,26 +267,6 @@ const contractABI = [
         "type": "address"
       }
     ],
-    "name": "balances",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
     "name": "consumers",
     "outputs": [
       {
@@ -343,6 +298,11 @@ const contractABI = [
     "stateMutability": "view",
     "type": "function",
     "constant": true
+  },
+  {
+    "stateMutability": "payable",
+    "type": "receive",
+    "payable": true
   },
   {
     "inputs": [
@@ -624,20 +584,6 @@ const contractABI = [
       }
     ],
     "name": "buy_energy",
-    "outputs": [],
-    "stateMutability": "payable",
-    "type": "function",
-    "payable": true
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address payable",
-        "name": "_to",
-        "type": "address"
-      }
-    ],
-    "name": "sendEther",
     "outputs": [],
     "stateMutability": "payable",
     "type": "function",
