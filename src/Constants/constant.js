@@ -1,25 +1,7 @@
-const contractAddress = "0x94653336424CEE379de5Ef51EABec2f05681EcFE";
+const contractAddress = "0x94...";
 
 const contractABI = [
-  {
-    "inputs": [],
-    "stateMutability": "nonpayable",
-    "type": "constructor"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "producer",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "uint32",
-        "name": "day",
-        "type": "uint32"
+ .............................
       },
       {
         "indexed": true,
